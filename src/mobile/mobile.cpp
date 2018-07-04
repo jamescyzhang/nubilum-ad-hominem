@@ -6,6 +6,7 @@
 #include <map>
 
 #include <util/JSON.hpp>
+#include <util/push_payload.hpp>
 
 mobile::mobile() : client()
 {
@@ -31,14 +32,8 @@ int mobile::run()
         }
         else
         {
-            json::JSON pushobj = json::JSON::object{
-                    {"id:",        0},
-                    {"header",     "msg"},
-                    {"importance", 5},
-                    {"content",    str},
-                    {"notify",     false}
-            };
-            m_client->send(pushobj.dump());
+            push_payload payload("msg", 5, str, false);
+            m_client->send(payload.to_str());
         }
     }
     return 0;

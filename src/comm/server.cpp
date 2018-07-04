@@ -4,6 +4,8 @@
 #include <thread>
 #include <sys/select.h>
 
+#include <util/push_payload.hpp>
+
 namespace nubilum_ad_hominem
 {
     server::server(std::string str_port)
@@ -92,7 +94,9 @@ namespace nubilum_ad_hominem
                     else
                     {
                         std::cout << "RECV " << ": " << str << std::endl;
-                        m_server->send(sd, "Received message: \"" + str + "\"");
+                        push_payload payload(str);
+
+                        m_server->send(sd, "Received message: " + payload.get_content());
                     }
                 }
             }

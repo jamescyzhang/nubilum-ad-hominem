@@ -14,7 +14,7 @@ ADD_LIBRARY(nubilum_ad_hominem-comm
         src/net/node.hpp src/net/node.cpp
         src/comm/client.hpp src/comm/client.cpp
         src/comm/server.hpp src/comm/server.cpp
-        include/net/utils.hpp)
+        include/net/utils.hpp src/util/push_payload.cpp src/util/push_payload.hpp)
 
 ADD_LIBRARY(nubilum_ad_hominem
         src/mobile/mobile.hpp src/mobile/mobile.cpp)
