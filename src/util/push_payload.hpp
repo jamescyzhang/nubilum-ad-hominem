@@ -31,5 +31,6 @@ private:
     json::JSON m_json;
 };
 
+push_payload acknowledge(push_payload incoming);
 
 #endif //UTIL_PUSH_PAYLOAD_HPP

@@ -64,3 +64,11 @@ std::string push_payload::to_str()
 {
     return m_json.dump();
 }
+
+push_payload acknowledge(push_payload incoming)
+{
+    return push_payload("ack", incoming.get_importance(), json::JSON::object{
+            {"recv-id",        incoming.get_id()},
+            {"recv-timestamp", incoming.get_timestamp()}
+    }, false);
+}
