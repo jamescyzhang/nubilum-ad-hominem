@@ -93,10 +93,26 @@ namespace nubilum_ad_hominem
                     }
                     else
                     {
-                        std::cout << "RECV " << ": " << str << std::endl;
                         push_payload payload(str);
+                        std::cout << "RECV: " << payload.to_str() << std::endl;
 
-                        m_server->send(sd, "Received message: " + payload.get_content());
+                        if (payload.get_header() == "idt")
+                        {
+                            std::cout << "Incoming client identification." << std::endl;
+                            json::JSON identity = payload.get_content();
+                            std::cout << "Identity: " << identity.dump();
+                            if (identity["user"].bool_value())
+                            {
+                                this->m_user_clients.push_back(m_client);
+                                std::cout << "User client identified." << std::endl;
+                            }
+                            else
+                            {
+                                std::cout << "Home client identified." << std::endl;
+                            }
+                        }
+
+                        m_server->send(sd, "Received message: " + payload.get_content().dump());
                     }
                 }
             }

@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <thread>
+#include <util/push_payload.hpp>
 
 namespace nubilum_ad_hominem
 {
@@ -14,6 +15,10 @@ namespace nubilum_ad_hominem
 
         m_client = new net::tcp_client(log_printer);
         m_client->init_connect(str_addr, str_port);
+        identity = json::JSON::object{
+                {"class", "generic-client"},
+                {"user",  false}
+        };
     }
 
     client::client()
@@ -25,6 +30,10 @@ namespace nubilum_ad_hominem
 
         m_client = new net::tcp_client(log_printer);
         m_client->init_connect("127.0.0.1", "669");
+        identity = json::JSON::object{
+                {"class", "generic-client"},
+                {"user",  false}
+        };
     }
 
     bool client::init_connect(std::string str_addr, std::string str_port)
@@ -35,7 +44,6 @@ namespace nubilum_ad_hominem
     int client::run()
     {
         m_comm_thread = std::thread(&client::comm_thread, this);
-        m_client->send("Hello, server!");
         return 0;
     }
 
@@ -53,6 +61,11 @@ namespace nubilum_ad_hominem
             std::string str(cmd);
             std::cout << "RECV" << ": " << str << std::endl;
         }
+    }
+
+    void client::ident()
+    {
+        m_client->send(push_payload("idt", 5, identity, false).to_str());
     }
 
     client::~client()

@@ -5,7 +5,7 @@
 #include <comm/client.hpp>
 #include <string>
 
-class mobile : nubilum_ad_hominem::client
+class mobile : public nubilum_ad_hominem::client
 {
 public:
     mobile();

@@ -4,6 +4,7 @@
 #include <string>
 #include <thread>
 #include <net/tcp_client.hpp>
+#include <util/JSON.hpp>
 
 namespace nubilum_ad_hominem
 {
@@ -22,9 +23,12 @@ namespace nubilum_ad_hominem
 
         virtual int run();
 
+        void ident();
+
     protected:
         net::tcp_client *m_client;
         std::thread m_comm_thread;
+        json::JSON identity;
     };
 }
 

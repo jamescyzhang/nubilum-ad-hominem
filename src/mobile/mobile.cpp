@@ -10,12 +10,18 @@
 
 mobile::mobile() : client()
 {
-
+    identity = json::JSON::object{
+            {"class", "mobile-device"},
+            {"user",  true}
+    };
 }
 
 mobile::mobile(std::string str_addr, std::string str_port) : client(str_addr, str_port)
 {
-
+    identity = json::JSON::object{
+            {"class", "mobile-device"},
+            {"user",  true}
+    };
 }
 
 int mobile::run()

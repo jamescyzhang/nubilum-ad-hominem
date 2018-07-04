@@ -11,7 +11,7 @@ public:
 
     push_payload(json::JSON::object obj);
 
-    push_payload(std::string header, int importance, std::string content, bool notify);
+    push_payload(std::string header, int importance, json::JSON content, bool notify);
 
     long get_id();
 
@@ -19,7 +19,7 @@ public:
 
     int get_importance();
 
-    std::string get_content();
+    json::JSON get_content();
 
     bool should_notify();
 
