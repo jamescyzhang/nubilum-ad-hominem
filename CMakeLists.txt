@@ -16,10 +16,17 @@ ADD_LIBRARY(nubilum_ad_hominem-comm
         src/comm/server.hpp src/comm/server.cpp
         include/net/utils.hpp)
 
+ADD_LIBRARY(nubilum_ad_hominem
+        src/mobile/mobile.hpp src/mobile/mobile.cpp)
+
 TARGET_LINK_LIBRARIES(nubilum_ad_hominem-comm nubilum_ad_hominem-json)
+TARGET_LINK_LIBRARIES(nubilum_ad_hominem nubilum_ad_hominem-comm)
 
 ADD_EXECUTABLE(nubilum_ad_hominem-server src/server_main.cpp)
 ADD_EXECUTABLE(nubilum_ad_hominem-client src/client_main.cpp)
+ADD_EXECUTABLE(nubilum_ad_hominem-mobile src/mobile_main.cpp)
 
 TARGET_LINK_LIBRARIES(nubilum_ad_hominem-server nubilum_ad_hominem-comm)
 TARGET_LINK_LIBRARIES(nubilum_ad_hominem-client nubilum_ad_hominem-comm)
+
+TARGET_LINK_LIBRARIES(nubilum_ad_hominem-mobile nubilum_ad_hominem)
