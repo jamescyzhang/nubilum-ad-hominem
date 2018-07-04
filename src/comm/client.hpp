@@ -2,6 +2,7 @@
 #define COMM_CLIENT_HPP
 
 #include <string>
+#include <thread>
 #include <net/tcp_client.hpp>
 
 namespace nubilum_ad_hominem
@@ -13,6 +14,8 @@ namespace nubilum_ad_hominem
 
         client(std::string str_addr, std::string str_port);
 
+        ~client();
+
         bool init_connect(std::string str_addr, std::string str_port);
 
         int comm_thread();
@@ -21,6 +24,7 @@ namespace nubilum_ad_hominem
 
     protected:
         net::tcp_client *m_client;
+        std::thread m_comm_thread;
     };
 }
 

@@ -34,9 +34,8 @@ namespace nubilum_ad_hominem
 
     int client::run()
     {
-        std::thread comm(&client::comm_thread, this);
+        m_comm_thread = std::thread(&client::comm_thread, this);
         m_client->send("Hello, server!");
-        comm.join();
         return 0;
     }
 
@@ -55,4 +54,11 @@ namespace nubilum_ad_hominem
             std::cout << "RECV" << ": " << str << std::endl;
         }
     }
+
+    client::~client()
+    {
+        if (m_comm_thread.joinable())
+            m_comm_thread.join();
+    }
+
 }
