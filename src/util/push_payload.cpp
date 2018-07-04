@@ -19,7 +19,7 @@ push_payload::push_payload(std::string header, int importance, json::JSON conten
 {
     srand(time(NULL));
     m_json = json::JSON::object{
-            {"id:",        rand()},
+            {"id",        rand()},
             {"header",     header},
             {"importance", importance},
             {"content",    content},
