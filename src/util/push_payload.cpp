@@ -50,6 +50,11 @@ json::JSON push_payload::get_content()
     return m_json["content"];
 }
 
+int push_payload::get_timestamp()
+{
+    return m_json["timestamp"].int_value();
+}
+
 bool push_payload::should_notify()
 {
     return m_json["notify"].bool_value();

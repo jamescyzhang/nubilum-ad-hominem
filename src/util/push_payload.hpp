@@ -21,6 +21,8 @@ public:
 
     json::JSON get_content();
 
+    int get_timestamp();
+
     bool should_notify();
 
     std::string to_str();
