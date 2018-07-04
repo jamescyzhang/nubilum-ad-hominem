@@ -30,7 +30,7 @@ push_payload::push_payload(std::string header, int importance, json::JSON conten
 
 }
 
-long push_payload::get_id()
+int push_payload::get_id()
 {
     return m_json["id"].int_value();
 }

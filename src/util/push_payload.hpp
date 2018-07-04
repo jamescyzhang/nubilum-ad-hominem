@@ -13,7 +13,7 @@ public:
 
     push_payload(std::string header, int importance, json::JSON content, bool notify);
 
-    long get_id();
+    int get_id();
 
     std::string get_header();
 
